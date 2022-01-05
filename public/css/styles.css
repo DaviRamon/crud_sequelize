@@ -39,6 +39,15 @@ h1 {
     margin-bottom: .3em;
 }
 
+
+.form-checkbox {
+    flex-direction: row;
+}
+
+.form-checkbox input {
+    margin-right: 10px;
+}
+
 .form-control input{
     padding: 5px;
 }
