@@ -3,6 +3,7 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 
 const conn = require('./db/conn')
+const User = require('./models/User')
 
 const app = express()
 
@@ -25,4 +26,10 @@ app.get('/',  (req, res) => {
 })
 
 
-app.listen(3000)
+// app.listen(3000)
+
+// aplicação não funciona sem as tabelas criadas.
+conn.sync().then(() => {
+    app.listen(3000)
+})
+.catch((err) => console.log(err)) 

@@ -6,12 +6,12 @@ const sequelize = new Sequelize('sequelizedb', 'root', '', {
     dialect: 'mysql'
 })
 
-try {
-    sequelize.authenticate()
-    console.log('Connection Successful')
+// try {
+//     sequelize.authenticate()
+//     console.log('Connection Successful')
     
-} catch (err) {
-    console.log('Connection Failed:', err)
-}
+// } catch (err) {
+//     console.log('Connection Failed:', err)
+// }
 
 module.exports = sequelize
