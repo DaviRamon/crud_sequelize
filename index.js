@@ -70,13 +70,39 @@ app.post('/users/delete/:id', async (req, res) => {
 
 })
 
-//função para edtirar um usuário
+//traz um usuário para a página de edição
 app.get('/users/edit/:id', async (req, res) => {
 
     const id = req.params.id
     const user = await User.findOne({raw: true, where: {id: id}})
 
     res.render('useredit', {user})
+
+})
+
+
+app.post('/users/update', async (req, res) =>{
+    const id = req.body.id
+    const name = req.body.name
+    const occupation = req.body.occupation
+    let newsletter = req.body.newsletter
+
+    if(newsletter === 'on') {
+        newsletter = true
+    } else {
+        newsletter = false
+    }
+
+    // cria um objeto com os dados
+    const userData = {
+        id,
+        name,
+        occupation,
+        newsletter,
+    }
+
+    await User.update(userData, {where: {id: id}})
+    res.redirect('/')
 
 })
 
