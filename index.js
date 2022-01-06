@@ -55,21 +55,30 @@ app.get('/users/:id', async (req, res) => {
     const user = await User.findOne({ raw: true, where: {id: id}})
 
     console.log(user)
-
     res.render('userview', {user})
 
 
 })
 
+//função para deletar um usuario por meio do Id.
+app.post('/users/delete/:id', async (req, res) => {
+
+    const id = req.params.id
+    await User.destroy({where: {id: id}})
+
+    res.redirect('/')
+
+})
+
+
 
 
 app.get('/', async (req, res) => {
 
-    // raw é utilizado para trazer somente o array com os dados. Mais facil de interpretar  e tratar.
+// raw é utilizado para trazer somente o array com os dados. Mais facil de interpretar  e tratar.
    const users = await User.findAll({raw: true})
 
    console.log(users)
-
     res.render('home', {users: users})
 })
 
