@@ -47,6 +47,22 @@ app.post('/users/create', async(req, res) => {
 })
 
 
+app.get('/users/:id', async (req, res) => {
+    const id = req.params.id
+
+    // função para buscar o usuario pelo Id,  { where: { pode ser adicionado, outros parametros tmb.}}
+    // sem o MALDITO RAW: não funciona.
+    const user = await User.findOne({ raw: true, where: {id: id}})
+
+    console.log(user)
+
+    res.render('userview', {user})
+
+
+})
+
+
+
 app.get('/', async (req, res) => {
 
     // raw é utilizado para trazer somente o array com os dados. Mais facil de interpretar  e tratar.
@@ -56,6 +72,7 @@ app.get('/', async (req, res) => {
 
     res.render('home', {users: users})
 })
+
 
 
 // app.listen(3000)
