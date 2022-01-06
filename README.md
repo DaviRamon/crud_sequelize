@@ -1,1 +1,1 @@
-# crud_nodejs_mysql
+# crud_sequlize_nodejs
