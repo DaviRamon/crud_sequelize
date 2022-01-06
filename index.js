@@ -38,18 +38,23 @@ app.post('/users/create', async(req, res) => {
     } else {
         newsletter = false
     }
-    
+
     console.log(req.body)
 
     await User.create({name, occupation, newsletter})
     res.redirect('/')
 
-
 })
 
 
-app.get('/',  (req, res) => {
-    res.render('home')
+app.get('/', async (req, res) => {
+
+    // raw é utilizado para trazer somente o array com os dados. Mais facil de interpretar  e tratar.
+   const users = await User.findAll({raw: true})
+
+   console.log(users)
+
+    res.render('home', {users: users})
 })
 
 
