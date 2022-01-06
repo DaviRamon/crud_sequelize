@@ -132,3 +132,14 @@ h1 {
     border-top: 1px solid #ccc
 
 }
+
+.address-list div {
+    display: flex;
+    margin-bottom: 1em;
+    padding-bottom: 1px;
+    border-bottom: 1px solid #ddd;
+}
+
+.address-list form {
+    margin-left: 1em;
+}

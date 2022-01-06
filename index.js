@@ -136,8 +136,19 @@ app.post('/address/create', async (req, res) => {
 
 })
 
+// deleta um endereço.
+app.post ('/address/delete', async (req, res) => {
+    const UserId = req.body.UserId
+    const id = req.body.id
+    
+    await Address.destroy({ 
+        where: {id: id},
+    })
+    res.redirect(`/users/edit/${UserId}`)
+})
 
-// app.listen(3000)
+
+
 
 // aplicação não funciona sem as tabelas criadas.
 conn

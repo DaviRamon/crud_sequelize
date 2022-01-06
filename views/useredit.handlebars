@@ -43,10 +43,21 @@
     </form>
 
     <div class="address-list">
-        <h2>Addres List:</h2> 
-        {{#each user.Addresses}} <!-- Usar o nome da tabela quando usamos o app.get(/users/edit/:id) plain:true -->
-            <p>
-                #{{this.id}} - {{this.street}} - {{this.number}} - {{this.city}}</p>
+        <h2>Address List:</h2>
+        {{#each user.Addresses}}
+        <!-- Usar o nome da tabela quando usamos o app.get(/users/edit/:id) plain:true -->
+        <div>
+            #{{this.id}} -
+            {{this.street}} -
+            {{this.number}} -
+            {{this.city}}
+        <form action="/address/delete" method="post">
+            <input type="hidden" name="UserId" value="{{this.UserId}}">
+            <input type="hidden" name="id" value="{{this.id}}">
+            <input type="submit" value="Delete">
+        </form>
+
+        </div>
         {{/each}}
     </div>
 
