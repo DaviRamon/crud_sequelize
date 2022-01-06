@@ -1,0 +1,26 @@
+<h1>Editing: {{user.name}}</h1>  
+
+<form action="/users/create" method="post" class="form">
+<input type="hidden" name="id" value="{{user.id}}">
+    <div class="form-control">
+        <label for="name"> Name: </label>
+        <input type="text" name="name" placeholder="Write you name: " value="{{user.name}}">
+    </div>
+
+    <div class="form-control">
+        <label for="occupation"> Occupation: </label>
+        <input type="text" name="occupation" placeholder="Write you occupation: " value="{{user.occupation}}">
+    </div>
+
+    <div class="form-control form-checkbox">
+        {{#if user.newsletter}}
+        <input type="checkbox" name="newsletter" checked>
+        {{else}}
+        <label for="newsletter"> want to receive our newsletter?</label>  
+        {{/if}}
+
+    </div>
+    <input type="submit" value="Edit">
+
+
+</form>
