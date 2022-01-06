@@ -10,10 +10,12 @@ const User = db.define('User', {
         type: DataTypes.STRING,
         allowNull: false  // não aceita valor nulo
     },
+
     occupation: {
         type: DataTypes.STRING,
         required: true // não aceita valor vazio nem nulo. 
     },
+    
     newsletter: {
         type: DataTypes.BOOLEAN,
     },

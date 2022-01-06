@@ -1,9 +1,8 @@
 const express = require('express')
-
 const exphbs = require('express-handlebars')
-
 const conn = require('./db/conn')
 const User = require('./models/User')
+const Adress = require('./models/Adress')
 
 const app = express()
 
@@ -123,7 +122,10 @@ app.get('/', async (req, res) => {
 // app.listen(3000)
 
 // aplicação não funciona sem as tabelas criadas.
-conn.sync().then(() => {
+conn
+.sync()
+//.sync({force: true}) /*recria as tabelas. CUIDADO */ 
+.then(() => {
     app.listen(3000)
 })
 .catch((err) => console.log(err)) 
