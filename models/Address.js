@@ -5,7 +5,7 @@ const db = require('../db/conn')
 const User = require('./User')
 
 
-const Adress = db.define('Adress', {
+const Address = db.define('Address', {
 
     street: {
         type: DataTypes.STRING,
@@ -23,7 +23,7 @@ const Adress = db.define('Adress', {
     }
 })
 
-// metodo que cria a relação entre Adress e User.  
-Adress.belongsTo(User)
+// metodo que cria a relação entre Address e User.  
+Address.belongsTo(User)
 
-module.exports = Adress
+module.exports = Address

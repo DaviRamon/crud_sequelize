@@ -2,7 +2,7 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const conn = require('./db/conn')
 const User = require('./models/User')
-const Adress = require('./models/Adress')
+const Address = require('./models/Address')
 
 const app = express()
 
@@ -79,7 +79,7 @@ app.get('/users/edit/:id', async (req, res) => {
 
 })
 
-
+// atualiza os dados do usuário
 app.post('/users/update', async (req, res) =>{
     const id = req.body.id
     const name = req.body.name
@@ -106,8 +106,6 @@ app.post('/users/update', async (req, res) =>{
 })
 
 
-
-
 app.get('/', async (req, res) => {
 
 // raw é utilizado para trazer somente o array com os dados. Mais facil de interpretar  e tratar.
@@ -117,6 +115,25 @@ app.get('/', async (req, res) => {
     res.render('home', {users: users})
 })
 
+
+// cria um novo endereço para o usuario quando solicitado
+app.post('/address/create', async (req, res) => {
+    const UserId = req.body.UserId
+    const street = req.body.street
+    const number = req.body.number
+    const city = req.body.city
+
+    const address = {
+        UserId,
+        street,
+        number,
+        city,
+    }
+
+   await Address.create(address)
+   res.redirect(`/users/edit/${UserId}`)
+
+})
 
 
 // app.listen(3000)
