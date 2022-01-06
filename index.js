@@ -69,13 +69,14 @@ app.post('/users/delete/:id', async (req, res) => {
 
 })
 
-//traz um usuário para a página de edição
+//traz o endereço de um usuário para a página de edição
 app.get('/users/edit/:id', async (req, res) => {
 
     const id = req.params.id
-    const user = await User.findOne({raw: true, where: {id: id}})
+    const user = await User.findOne({include: Address, where: {id: id}})
 
-    res.render('useredit', {user})
+    //
+    res.render('useredit', {user: user.get({ plain: true }) })
 
 })
 
@@ -141,7 +142,7 @@ app.post('/address/create', async (req, res) => {
 // aplicação não funciona sem as tabelas criadas.
 conn
 .sync()
-//.sync({force: true}) /*recria as tabelas. CUIDADO */ 
+//.sync({force: true}) /*recria as tabelas. CUIDADO APAGA TODOS OS DADOS*/ 
 .then(() => {
     app.listen(3000)
 })

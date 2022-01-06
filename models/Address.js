@@ -24,6 +24,7 @@ const Address = db.define('Address', {
 })
 
 // metodo que cria a relação entre Address e User.  
+User.hasMany(Address)
 Address.belongsTo(User)
 
 module.exports = Address
